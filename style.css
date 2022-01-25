@@ -14,10 +14,14 @@ hr {
   margin: 0;
 }
 
+.form-floating label {
+  font-size: 1.1rem;
+}
+
 div.player,
 div.life,
 div.poison,
-div.life-tracker {
+div.life-calc {
   border: 1px rgb(170, 170, 170) solid;
 }
 
@@ -25,6 +29,7 @@ div.life-tracker {
   background-color: rgb(121, 107, 94);
   margin: auto;
   border: 1px solid black;
+  max-width: 800px;
 }
 
 .top-button-row {
@@ -36,6 +41,7 @@ div.life-tracker {
 .game-time {
   background-color: #504c4c;
   color: #fff;
+  margin-bottom: 0;
 }
 
 /* LIFE TOTAL SECTION*/
@@ -54,8 +60,8 @@ div.life-tracker {
   background-color: rgb(217, 223, 221);
 }
 
-/* LIFE TRACKER SECTION  */
-.life-tracker {
+/* LIFE CALCULATOR SECTION  */
+.life-calc {
   background-color: rgb(238, 229, 228);
 }
 

@@ -7,8 +7,8 @@ function Player(pName, dName) {
   this.cannotLose = false;
 }
 
-const p1 = new Player('Player 1', 'P1 Deck Name');
-const p2 = new Player('Player 2', 'P2 Deck Name');
+const p1 = new Player('Player 1', 'Deck Name');
+const p2 = new Player('Player 2', 'Deck Name');
 
 newGame();
 
@@ -25,6 +25,28 @@ function newGame() {
   $('span.p2-poison').text(p2.poisonCounters);
 }
 
+function playerDetails() {
+  p1.playerName = $('#p1-name').prop('value') || 'Player 1';
+  p1.deckName = $('#p1-deck-name').prop('value') || 'Deck Name';
+  p2.playerName = $('#p2-name').prop('value') || 'Player 2';
+  p2.deckName = $('#p2-deck-name').prop('value') || 'Deck Name';
+
+  resetCounts();
+  newGame();
+}
+
+function clearNames() {
+  $('#p1-name').prop('value', '');
+  $('#p1-deck-name').prop('value', '');
+  $('#p2-name').prop('value', '');
+  $('#p2-deck-name').prop('value', '');
+}
+
+$('#reset-game').click(function () {
+  resetCounts();
+  newGame();
+});
+
 function resetCounts() {
   p1.totalLife = 20;
   p1.poisonCounters = 0;
@@ -36,16 +58,12 @@ function resetCounts() {
   p2.cannotLose = false;
   p2.cannotWin = false;
 
+  $('input:checkbox').prop('checked', false);
+
   $('div.results').text('');
 }
 
 function checkIfWinner() {
-  // if (p1.cannotLose === true || p2.cannotLose === true) {
-  //   return;
-  // } else {
-  //   $('div.results').text('');
-  // }
-
   if (
     !p2.cannotWin &&
     !p1.cannotLose &&
@@ -62,17 +80,6 @@ function checkIfWinner() {
     $('div.results').text('');
   }
 }
-
-$('#new-game').click(function () {
-  // TO-DO:   fill in player name and deck name through modal (?)
-  resetCounts();
-  newGame();
-});
-
-$('#reset-game').click(function () {
-  resetCounts();
-  newGame();
-});
 
 // Controls Poison Counter Total
 // if a player has more than 10 poison counters, they lose the game
@@ -106,7 +113,7 @@ $('button.psn-up').click(function () {
 });
 
 // Controls the cannot win/cannot lose logic
-$('input').click(function () {
+$('input:checkbox').click(function () {
   var status = $(this).attr('id');
 
   switch (status) {
