@@ -67,3 +67,8 @@ div.life-tracker {
 .heart:hover {
   color: rgb(148, 88, 88);
 }
+
+.results {
+  font-size: 3rem;
+  height: 4.5rem;
+}

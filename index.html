@@ -17,52 +17,52 @@
 </head>
 <body>
 
+  <!-- HEADER SECTION AND BUTTON OPTIONS  -->
   <div class='container-fluid main '>
       <div class="row top-button-row">
         <div class="col ">
          <h1>MTG Game Companion</h1>
   
-          <button class="btn btn-outline-warning" type="button">New Game</button>
-          <button class="btn btn-outline-warning" type="button">Reset Game</button>
-          <button class="btn btn-outline-warning" type="button">Clear Game</button>
+          <button class="btn btn-outline-warning" type="button" id="new-game">New Game</button>
+          
+         
+          <button class="btn btn-outline-warning" type="button" id="reset-game">Reset Game</button>
         </div> 
       </div>
   
+  
+      <!-- PLAYER NAME + DECK NAME  -->
       <div class="row">
-        <div class="col player">
-          PLAYER 1
-          <hr>
-          DECK NAME
+        <div class="col player p1">      
         </div>
-        <div class="col player">
-          PLAYER 2
-          <hr>
-          DECK NAME
+        <div class="col player p2">
         </div>
  
       </div>
       <div class="row">
         <div class="col life ">
           LIFE
-          <div class="life-count">20</div>
+          <div class="p1 life-count"></div>
         </div>
         <div class="col life">
           LIFE
-          <div class="life-count">20</div>
+          <div class="p2 life-count"></div>
         </div>
       </div>
 
+      <!-- POISON COUNTERS  -->
       <div class="row">
         <div class="col  poison">
           
           POISON COUNTERS
           <i class="fas fa-skull-crossbones"></i>
           <hr>
-          <button class="btn btn-lg" type="button"> 
-            <i class="fas fa-caret-square-down"></i>
+          <button class="btn btn-lg psn-down" type="button" value="p1"> 
+            <i class="fas fa-caret-square-down" ></i>
           </button>
-           0 
-          <button class="btn btn-lg" type="button"> 
+         <span class="p1-poison">  </span>
+          
+          <button class="btn btn-lg psn-up" type="button" value="p1"> 
             <i class="fas fa-caret-square-up"></i>
           </button>
 
@@ -72,28 +72,28 @@
           POISON COUNTERS
           <i class="fas fa-skull-crossbones"></i>
           <hr>
-          <button class="btn btn-lg" type="button"> 
-            <i class="fas fa-caret-square-down"></i>
+          <button class="btn btn-lg psn-down" type="button" value="p2"> 
+            <i class="fas fa-caret-square-down" ></i>
           </button>
-           0 
-          <button class="btn btn-lg" type="button"> 
-            <i class="fas fa-caret-square-up"></i>
+          <span class="p2-poison">  </span> 
+          <button class="btn btn-lg psn-up" type="button" value="p2"> 
+            <i class="fas fa-caret-square-up" ></i>
           </button>
         </div>
       </div>
 
+      <!-- CANNOT WIN/LOSE + LIFE TRACKER -->
+      <!-- PLAYER 1  -->
         <div class="row">
           <div class="col life-tracker ">
-
             <div class="row">
-
               <div class="col">
-                <input type="checkbox" id="p1CannotWin" value="false" class="">
+                <input type="checkbox" id="p1CannotWin" autocomplete="off">
                 <label for="p1CannotWin">Cannot Win</label>
               </div>
 
               <div class="col">
-                <input type="checkbox" id="p1CannotLose" value="false">
+                <input type="checkbox" id="p1CannotLose" >
                 <label for="p1CannotLose">Cannot Lose</label>
               </div>
                 <hr>
@@ -102,24 +102,24 @@
             <div class="row">
               <div class="col">
                 <button class="btn heart" type="button">
-                  <i class="fas fa-heart ">-1</i>
+                  <i class="fas fa-heart" value='p1'>-1</i>
                 </button>
                 <button class="btn heart" type="button">
-                  <i class="fas fa-heart ">-5</i>
+                  <i class="fas fa-heart" value='p1'>-5</i>
                 </button>
                 </div>
                 <div class="col">
                 <button class="btn heart" type="button">
-                  <i class="fas fa-heart ">+1</i>
+                  <i class="fas fa-heart" value='p1'>+1</i>
                 </button>
                 <button class="btn heart" type="button">
-                  <i class="fas fa-heart ">+5</i>
+                  <i class="fas fa-heart" value='p1'>+5</i>
                 </button>
               </div>
             </div>
        </div>
 
-
+       <!-- PLAYER 2  -->
           <div class="col life-tracker ">
             <div class="row">
 
@@ -138,18 +138,18 @@
             <div class="row">
               <div class="col">
                 <button class="btn heart" type="button">
-                  <i class="fas fa-heart">-1</i>
+                  <i class="fas fa-heart" value='p2'>-1</i>
                 </button>
                 <button class="btn heart" type="button">
-                  <i class="fas fa-heart">-5</i>
+                  <i class="fas fa-heart"  value='p2'>-5</i>
                 </button>
                 </div>
                 <div class="col">
                 <button class="btn heart" type="button">
-                  <i class="fas fa-heart">+1</i>
+                  <i class="fas fa-heart"  value='p2'>+1</i>
                 </button>
                 <button class="btn heart" type="button">
-                  <i class="fas fa-heart">+5</i>
+                  <i class="fas fa-heart"  value='p2'>+5</i>
                 </button>
               </div>
             </div>
@@ -158,14 +158,19 @@
           </div>
         </div>
 
-        
+
+        <!-- GAME TIME  -->
       </div>
-      <h2 class=" game-time">
+      <h2 class="game-time">
         GAME TIME
+        <div class="results"></div>
       </h2>
+     
 
   </div>
   
+  <!-- JQUERY SCRIPT  -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="index.js"></script>
 </body>
 </html>
