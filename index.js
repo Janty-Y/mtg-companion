@@ -2,6 +2,7 @@ function Player(pName, dName) {
   this.playerName = pName;
   this.deckName = dName;
   this.totalLife = 20;
+  this.lifeArray = [];
   this.poisonCounters = 0;
   this.cannotWin = false;
   this.cannotLose = false;
@@ -49,17 +50,19 @@ $('#reset-game').click(function () {
 
 function resetCounts() {
   p1.totalLife = 20;
+  p1.lifeArray = [];
   p1.poisonCounters = 0;
   p1.cannotLose = false;
   p1.cannotWin = false;
 
   p2.totalLife = 20;
+  p2.lifeArray = [];
   p2.poisonCounters = 0;
   p2.cannotLose = false;
   p2.cannotWin = false;
 
   $('input:checkbox').prop('checked', false);
-
+  $('span.life-history-scroll').text('');
   $('div.results').text('');
 }
 
@@ -140,17 +143,48 @@ $('input:checkbox').click(function () {
 // Controls "Heart" button logic
 // updates life totals and prints value to screen
 // determines winner of game if a player's life is <= 0
+var p1ClickTotal = 0;
+var p2ClickTotal = 0;
+
 $('button.heart').click(function () {
   var player = $(':first-child', this).attr('value');
   var amount = $(':first-child', this).text();
 
   if (player === 'p1') {
     p1.totalLife += Number(amount);
+    p1ClickTotal += Number(amount);
     $('.' + player + '.life-count').text(p1.totalLife);
   } else if (player === 'p2') {
     p2.totalLife += Number(amount);
+    p2ClickTotal += Number(amount);
     $('.' + player + '.life-count').text(p2.totalLife);
   }
 
+  delayedLifeHistory(player);
   checkIfWinner();
 });
+
+function delayedLifeHistory(player) {
+  setTimeout(function () {
+    if (p1ClickTotal != 0 && player === 'p1') {
+      if (p1ClickTotal > 0) {
+        p1ClickTotal = '+' + p1ClickTotal;
+      }
+      p1.lifeArray.push(p1ClickTotal);
+      $('span.life-history-scroll.hp1').append(
+        p1.lifeArray[p1.lifeArray.length - 1] + '<br>'
+      );
+      p1ClickTotal = 0;
+    }
+    if (p2ClickTotal != 0 && player === 'p2') {
+      if (p2ClickTotal > 0) {
+        p2ClickTotal = '+' + p2ClickTotal;
+      }
+      p2.lifeArray.push(p2ClickTotal);
+      $('span.life-history-scroll.hp2').append(
+        p2.lifeArray[p2.lifeArray.length - 1] + '<br>'
+      );
+      p2ClickTotal = 0;
+    }
+  }, 1500);
+}

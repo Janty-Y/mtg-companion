@@ -19,10 +19,13 @@ hr {
 }
 
 div.player,
-div.life,
 div.poison,
 div.life-calc {
   border: 1px rgb(170, 170, 170) solid;
+}
+
+div.life {
+  border-right: 1px rgb(170, 170, 170) solid;
 }
 
 .main {
@@ -45,9 +48,19 @@ div.life-calc {
 }
 
 /* LIFE TOTAL SECTION*/
-.life {
+.life,
+.life-history {
   background-color: #fff;
   height: 300px;
+  border: none;
+}
+
+.life-history-scroll {
+  position: absolute;
+  overflow-y: scroll;
+  max-height: 260px;
+  font-size: 1.1rem;
+  margin-left: 0;
 }
 
 .life-count {
@@ -58,6 +71,11 @@ div.life-calc {
 /* POISON SECTION */
 .poison {
   background-color: rgb(217, 223, 221);
+}
+
+.psn-down:hover,
+.psn-up:hover {
+  color: rgb(31, 170, 31);
 }
 
 /* LIFE CALCULATOR SECTION  */
