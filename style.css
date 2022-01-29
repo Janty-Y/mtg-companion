@@ -30,6 +30,7 @@ div.life {
 
 .main {
   background-color: rgb(121, 107, 94);
+
   margin: auto;
   border: 1px solid black;
   max-width: 800px;
@@ -41,30 +42,35 @@ div.life {
 
 /* PLAYER TITLE SECTION  */
 .player,
-.game-time {
+.bottom {
   background-color: #504c4c;
   color: #fff;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 /* LIFE TOTAL SECTION*/
 .life,
 .life-history {
   background-color: #fff;
-  height: 300px;
+  height: 260px;
   border: none;
+}
+
+.offset {
+  padding-right: 80px;
+  background-color: #fff;
 }
 
 .life-history-scroll {
   position: absolute;
   overflow-y: scroll;
-  max-height: 260px;
+  max-height: 220px;
   font-size: 1.1rem;
   margin-left: 0;
 }
 
 .life-count {
-  margin: 60px 0 0 0;
+  margin: 25px 0 0 0;
   font-size: 5.5rem;
 }
 
@@ -92,7 +98,15 @@ div.life {
   color: rgb(148, 88, 88);
 }
 
-.results {
+.game-time {
   font-size: 3rem;
-  height: 4.5rem;
+}
+
+.results {
+  font-size: 2rem;
+  height: 3.5rem;
+}
+
+.save-button {
+  margin-bottom: 20px;
 }

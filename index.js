@@ -11,6 +11,9 @@ function Player(pName, dName) {
 const p1 = new Player('Player 1', 'Deck Name');
 const p2 = new Player('Player 2', 'Deck Name');
 
+let currentLogs = JSON.parse(localStorage.getItem('matchLogs') || '[]');
+let winner = null;
+
 newGame();
 
 function newGame() {
@@ -26,6 +29,7 @@ function newGame() {
   $('span.p2-poison').text(p2.poisonCounters);
 }
 
+// loads custom player/deck names from user input
 function playerDetails() {
   p1.playerName = $('#p1-name').prop('value') || 'Player 1';
   p1.deckName = $('#p1-deck-name').prop('value') || 'Deck Name';
@@ -48,6 +52,7 @@ $('#reset-game').click(function () {
   newGame();
 });
 
+// resets the game to default settings, except for player/deck names
 function resetCounts() {
   p1.totalLife = 20;
   p1.lifeArray = [];
@@ -61,11 +66,27 @@ function resetCounts() {
   p2.cannotLose = false;
   p2.cannotWin = false;
 
+  winner = null;
+
   $('input:checkbox').prop('checked', false);
   $('span.life-history-scroll').text('');
   $('div.results').text('');
+  $('.log-buttons').text('');
+
+  resetTimer();
 }
 
+function logButton() {
+  $('.log-buttons').html(
+    " <button class='btn btn-secondary save-button' onclick='matchLog()'>Save Log</button>"
+  );
+}
+
+// called whenever a game change can result in a winner.
+// will stop the timer, set a winner, and allow to log the match
+// will revert the above changes if a winner was seleted by accident
+// i.e. if a player's health went to 0 by mistake, increasing it above 0 will
+// return the state of an active game.
 function checkIfWinner() {
   if (
     !p2.cannotWin &&
@@ -73,15 +94,39 @@ function checkIfWinner() {
     (p1.totalLife <= 0 || p1.poisonCounters >= 10)
   ) {
     $('div.results').text(p2.playerName + ' Wins!');
+    stopped = true;
+    winner = p2.playerName;
+    logButton();
   } else if (
     !p1.cannotWin &&
     !p2.cannotLose &&
     (p2.totalLife <= 0 || p2.poisonCounters >= 10)
   ) {
     $('div.results').text(p1.playerName + ' Wins!');
+    stopped = true;
+    winner = p1.playerName;
+
+    logButton();
   } else {
+    stopped = false;
+    winner = null;
     $('div.results').text('');
+    $('.log-buttons').text('');
   }
+}
+
+// logic to save games to view for future reference
+// TODO - load into local storage
+function matchLog() {
+  let currentMatch = {
+    p1Log: { ...p1 },
+    p2Log: { ...p2 },
+    results: winner + ' won this match.',
+    duration: displayHours + ':' + displayMinutes + ':' + displaySeconds,
+  };
+
+  currentLogs.push(currentMatch);
+  localStorage.setItem('matchLogs', JSON.stringify(currentLogs));
 }
 
 // Controls Poison Counter Total
@@ -90,7 +135,7 @@ function checkIfWinner() {
 
 // for decreasing poison counters
 $('button.psn-down').click(function () {
-  var player = $(this).attr('value');
+  let player = $(this).attr('value');
   if (player === 'p1' && p1.poisonCounters > 0) {
     p1.poisonCounters--;
     $('span.p1-poison').text(p1.poisonCounters);
@@ -103,7 +148,7 @@ $('button.psn-down').click(function () {
 
 // for increasing poison counters
 $('button.psn-up').click(function () {
-  var player = $(this).attr('value');
+  let player = $(this).attr('value');
 
   if (player === 'p1') {
     p1.poisonCounters++;
@@ -117,7 +162,7 @@ $('button.psn-up').click(function () {
 
 // Controls the cannot win/cannot lose logic
 $('input:checkbox').click(function () {
-  var status = $(this).attr('id');
+  let status = $(this).attr('id');
 
   switch (status) {
     case 'p1CannotWin':
@@ -133,7 +178,7 @@ $('input:checkbox').click(function () {
       p2.cannotLose = !p2.cannotLose;
       break;
     default:
-      console.log('error with checkbox');
+      console.log('error with checkbox!');
       break;
   }
 
@@ -142,13 +187,12 @@ $('input:checkbox').click(function () {
 
 // Controls "Heart" button logic
 // updates life totals and prints value to screen
-// determines winner of game if a player's life is <= 0
-var p1ClickTotal = 0;
-var p2ClickTotal = 0;
+let p1ClickTotal = 0;
+let p2ClickTotal = 0;
 
 $('button.heart').click(function () {
-  var player = $(':first-child', this).attr('value');
-  var amount = $(':first-child', this).text();
+  let player = $(':first-child', this).attr('value');
+  let amount = $(':first-child', this).text();
 
   if (player === 'p1') {
     p1.totalLife += Number(amount);
@@ -164,6 +208,9 @@ $('button.heart').click(function () {
   checkIfWinner();
 });
 
+// if the user clicks a heart multiple times, this function allows the history
+// to show it as a total number of life loss/gain in short bursts
+// i.e. clicking -1 4 times in a row will show "-4" instead of "-1 -1 -1 -1"
 function delayedLifeHistory(player) {
   setTimeout(function () {
     if (p1ClickTotal != 0 && player === 'p1') {
@@ -187,4 +234,120 @@ function delayedLifeHistory(player) {
       p2ClickTotal = 0;
     }
   }, 1500);
+}
+
+// ************************ MATCH LOG MODAL ********************
+function viewLogs() {
+  if (currentLogs.length > 0) {
+    $('.display-match-logs').text('');
+    currentLogs.forEach(function (i) {
+      $('.display-match-logs').append(
+        i.p1Log.playerName +
+          ' vs ' +
+          i.p2Log.playerName +
+          '<br>' +
+          i.p1Log.deckName +
+          ' - ' +
+          i.p2Log.deckName +
+          '<br>' +
+          i.p1Log.totalLife +
+          '   <i class="fas fa-heart heart"></i>   ' +
+          i.p2Log.totalLife +
+          '<br>' +
+          i.p1Log.poisonCounters +
+          ' <i class="fas fa-skull-crossbones"></i> ' +
+          i.p2Log.poisonCounters +
+          '<br>' +
+          i.results +
+          '<br>' +
+          'Match time: ' +
+          i.duration +
+          '<hr><br>'
+      );
+    });
+  } else {
+    $('.display-match-logs').text('');
+    $('.display-match-logs').append('<h2>No Match History Found</h2>');
+  }
+}
+
+function clearHistory() {
+  localStorage.clear();
+  currentLogs = [];
+  viewLogs();
+}
+
+// ************************ STOP WATCH *************************
+
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+let displaySeconds = 0;
+let displayMinutes = 0;
+let displayHours = 0;
+
+let interval = null;
+let stopped = true;
+
+function stopWatch() {
+  if (stopped === false) {
+    seconds++;
+
+    if (seconds / 60 === 1) {
+      seconds = 0;
+      minutes++;
+
+      if (minutes / 60 === 1) {
+        minutes = 0;
+        hours++;
+      }
+    }
+
+    //makes the display 2 digits
+    if (seconds < 10) {
+      displaySeconds = '0' + seconds.toString();
+    } else {
+      displaySeconds = seconds;
+    }
+
+    if (minutes < 10) {
+      displayMinutes = '0' + minutes.toString();
+    } else {
+      displayMinutes = minutes;
+    }
+
+    if (hours < 10) {
+      displayHours = '0' + hours.toString();
+    } else {
+      displayHours = hours;
+    }
+
+    //Display updated time values to user
+    $('.game-time').text(
+      displayHours + ':' + displayMinutes + ':' + displaySeconds
+    );
+  }
+}
+
+function startStop() {
+  if (stopped === false) {
+    window.clearInterval(interval);
+    $('.time-button').text('Start');
+    stopped = true;
+  } else {
+    interval = window.setInterval(stopWatch, 1000);
+    $('.time-button').text('Stop');
+    stopped = false;
+  }
+}
+
+//Function to reset the stopwatch
+function resetTimer() {
+  window.clearInterval(interval);
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+  stopped = true;
+  $('.time-button').text('Start');
+  $('.game-time').text('00:00:00');
 }

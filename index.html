@@ -22,12 +22,32 @@
   <div class='container-fluid main '>
       <div class="row top-button-row">
         <div class="col ">
-         <h1>MTG Game Companion</h1>
+         <h1>Magic: The Gathering Companion</h1>
   
           <button class="btn btn-outline-warning" type="button" id="new-game" data-bs-toggle="modal" data-bs-target="#player-info" >New Game
           </button>
           <button class="btn btn-outline-warning" type="button" id="reset-game">Reset Game</button>
+          <button class='btn btn-outline-warning' type="button" id="view-logs-btn" data-bs-toggle="modal" data-bs-target="#view-logs" onclick=viewLogs()>View Logs</buton>
         </div> 
+      </div>
+
+      <div class="modal fade" id="view-logs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="view-logs-label">Match History</h5>
+             
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body display-match-logs">
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" class="btn btn-danger btn-lg" onclick=clearHistory()>Clear History</button>
+              <button type="button" class="btn btn-secondary ms-auto btn-lg" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
 
 
@@ -80,14 +100,14 @@
       </div>
 
       <!-- LIFE TRACKER  -->
-      <div class="row">
+      <div class="row ">
         <div class="col-1 life-history">+/-
           <hr>
           <span class="life-history-scroll hp1">
            
           </span>
         </div>
-        <div class="col life ">
+        <div class="col life offset">
           LIFE
           <div class="p1 life-count"></div>
         </div>
@@ -97,7 +117,7 @@
            
           </span>
         </div>
-        <div class="col life">
+        <div class="col life offset">
           LIFE
           <div class="p2 life-count"></div>
         </div>
@@ -210,10 +230,20 @@
        </div>
 
           <!-- GAME TIME  -->
-          <h2 class="game-time">
-            GAME TIME
+          <div class="bottom">
+            
+            <h2 class="game-time">
+              00:00:00
+            </h2>
+            <div class="col-">
+              
+              <button class="btn btn-secondary btn-lg time-button" onclick="startStop()">Start</button>
+              <button class="btn btn-secondary btn-lg" onclick="resetTimer()">Reset</button>
+            </div>
             <div class="results"></div>
-          </h2>
+            <div class="log-buttons"></div>
+            
+          </div>
       </div>
          
     </div>
