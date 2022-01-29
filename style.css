@@ -14,20 +14,31 @@ hr {
   margin: 0;
 }
 
-.form-floating label {
-  font-size: 1.1rem;
-}
-
 div.player,
 div.poison,
 div.life-calc {
   border: 1px rgb(170, 170, 170) solid;
 }
 
-div.life {
-  border-right: 1px rgb(170, 170, 170) solid;
+#about {
+  text-align: left;
 }
 
+.about-font {
+  font-size: 1.2rem;
+}
+
+.btn:active {
+  transform: scale(0.85);
+  /* to show a "pressed" effect */
+}
+
+.btn {
+  box-shadow: none !important  ;
+  /* getting rid of those bootstrap button shadows */
+}
+
+/* TITLE AND BUTTONS */
 .main {
   background-color: rgb(121, 107, 94);
 
@@ -36,11 +47,15 @@ div.life {
   max-width: 800px;
 }
 
+.form-floating label {
+  font-size: 1.1rem;
+}
+
 .top-button-row {
   margin-bottom: 10px;
 }
 
-/* PLAYER TITLE SECTION  */
+/* PLAYER NAME SECTION  */
 .player,
 .bottom {
   background-color: #504c4c;
@@ -54,6 +69,10 @@ div.life {
   background-color: #fff;
   height: 260px;
   border: none;
+}
+
+div.life {
+  border-right: 1px rgb(170, 170, 170) solid;
 }
 
 .offset {
@@ -98,6 +117,7 @@ div.life {
   color: rgb(148, 88, 88);
 }
 
+/* TIMER AND WINNER SECTION  */
 .game-time {
   font-size: 3rem;
 }

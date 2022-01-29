@@ -116,7 +116,6 @@ function checkIfWinner() {
 }
 
 // logic to save games to view for future reference
-// TODO - load into local storage
 function matchLog() {
   let currentMatch = {
     p1Log: { ...p1 },
@@ -233,7 +232,7 @@ function delayedLifeHistory(player) {
       );
       p2ClickTotal = 0;
     }
-  }, 1500);
+  }, 2000);
 }
 
 // ************************ MATCH LOG MODAL ********************
@@ -322,7 +321,7 @@ function stopWatch() {
       displayHours = hours;
     }
 
-    //Display updated time values to user
+    //display updated time values to user
     $('.game-time').text(
       displayHours + ':' + displayMinutes + ':' + displaySeconds
     );
@@ -341,7 +340,7 @@ function startStop() {
   }
 }
 
-//Function to reset the stopwatch
+//function to reset the stopwatch and game states
 function resetTimer() {
   window.clearInterval(interval);
   seconds = 0;
