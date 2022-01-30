@@ -126,6 +126,7 @@ div.life {
 }
 
 .save-button {
+  padding-top: 0;
   margin-bottom: 20px;
 }
 
@@ -171,11 +172,11 @@ div.life {
     font-size: 1.4rem;
   }
   .game-time {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .top-button-row button {
     width: 20%;
-    height: 50%;
+    height: 55%;
   }
   .bottom button {
     width: 30%;
@@ -183,5 +184,9 @@ div.life {
   .cannot-checks {
     font-size: 0.9rem;
     margin: 2px 0;
+  }
+  .results {
+    font-size: 1.5rem;
+    height: auto;
   }
 }
