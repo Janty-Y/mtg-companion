@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <title>MTG Game Companion</title>
 
 <!-- Bootstrap -->
@@ -165,7 +166,7 @@
       </div>
   
       <!-- PLAYER NAME + DECK NAME  -->
-      <div class="row">
+      <div class="row player-title">
         <div class="col player p1">      
         </div>
         <div class="col player p2">
@@ -225,14 +226,14 @@
       <!-- PLAYER 1  -->
         <div class="row">
           <div class="col life-calc ">
-            <div class="row">
-              <div class="col">
-                <input type="checkbox" id="p1CannotWin" autocomplete="off">
+            <div class="row cannot-checks">
+              <div class="col ">
+                <input type="checkbox" id="p1CannotWin"  autocomplete="off">
                 <label for="p1CannotWin">Cannot Win</label>
               </div>
 
               <div class="col">
-                <input type="checkbox" id="p1CannotLose" autocomplete="off">
+                <input type="checkbox" id="p1CannotLose"   autocomplete="off">
                 <label for="p1CannotLose">Cannot Lose</label>
               </div>
                 <hr>
@@ -260,15 +261,15 @@
 
        <!-- PLAYER 2  -->
           <div class="col life-calc ">
-            <div class="row">
+            <div class="row cannot-checks">
               <div class="col">
-                <input type="checkbox" id="p2CannotWin" value="false" autocomplete="off">
+                <input type="checkbox" id="p2CannotWin" value="false"  autocomplete="off">
                 <label for="p2CannotWin">Cannot Win</label>
               </div>
 
-              <div class="col">
+              <div class="col ">
                 <input type="checkbox" id="p2CannotLose" value="false" autocomplete="off">
-                <label for="p2CannotLose">Cannot Lose</label>
+                <label for="p2CannotLose"  >Cannot Lose</label>
               </div>
               <hr>
             </div>
@@ -301,8 +302,8 @@
             </h2>
             <div class="col-">
               
-              <button class="btn btn-secondary btn-lg time-button" onclick="startStop()">Start</button>
-              <button class="btn btn-secondary btn-lg" onclick="resetTimer()">Reset</button>
+              <button class="btn btn-secondary  time-button" onclick="startStop()">Start</button>
+              <button class="btn btn-secondary " onclick="resetTimer()">Reset</button>
             </div>
             <div class="results"></div>
             <div class="log-buttons"></div>          

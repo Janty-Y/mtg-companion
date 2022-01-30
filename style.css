@@ -2,7 +2,7 @@ body {
   background: #9b9898;
   align-items: center;
   text-align: center;
-  margin: 1% 10%;
+  margin: 0% 0%;
   font-size: 1.5rem;
 }
 
@@ -41,8 +41,6 @@ div.life-calc {
 /* TITLE AND BUTTONS */
 .main {
   background-color: rgb(121, 107, 94);
-
-  margin: auto;
   border: 1px solid black;
   max-width: 800px;
 }
@@ -129,4 +127,63 @@ div.life {
 
 .save-button {
   margin-bottom: 20px;
+}
+
+@media (max-width: 760px) {
+  body {
+    font-size: 0.95rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .player-title {
+    padding-top: 10px;
+  }
+  .life,
+  .life-history {
+    background-color: #fff;
+    height: 160px;
+    border: none;
+    width: 40px;
+  }
+
+  .life-history {
+    text-align: left;
+  }
+
+  .life-history-scroll {
+    background-color: #fff;
+    max-height: 130px;
+    font-size: 0.8rem;
+    text-align: left;
+    width: 40px;
+  }
+  .life-count {
+    font-size: 2.5rem;
+    height: 1rem;
+  }
+  .offset {
+    padding-right: 30px;
+    background-color: #fff;
+  }
+  .heart {
+    font-size: 1.4rem;
+  }
+  .game-time {
+    font-size: 2rem;
+  }
+  .top-button-row button {
+    width: 20%;
+    height: 60%;
+  }
+  .bottom button {
+    width: 30%;
+    height: 10%;
+  }
+  .cannot-checks {
+    font-size: 0.85rem;
+    margin: 0;
+    padding: 0px;
+  }
 }
