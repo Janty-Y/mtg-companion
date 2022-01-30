@@ -124,6 +124,10 @@ function matchLog() {
     duration: displayHours + ':' + displayMinutes + ':' + displaySeconds,
   };
 
+  $('.log-buttons').html(
+    " <button class='btn btn-secondary save-button' disabled>Saved!</button>"
+  );
+
   currentLogs.push(currentMatch);
   localStorage.setItem('matchLogs', JSON.stringify(currentLogs));
 }

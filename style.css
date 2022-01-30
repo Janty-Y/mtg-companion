@@ -138,7 +138,7 @@ div.life {
   }
 
   .player-title {
-    padding-top: 10px;
+    padding-top: 5px;
   }
   .life,
   .life-history {
@@ -175,15 +175,13 @@ div.life {
   }
   .top-button-row button {
     width: 20%;
-    height: 60%;
+    height: 50%;
   }
   .bottom button {
     width: 30%;
-    height: 10%;
   }
   .cannot-checks {
-    font-size: 0.85rem;
-    margin: 0;
-    padding: 0px;
+    font-size: 0.9rem;
+    margin: 2px 0;
   }
 }
