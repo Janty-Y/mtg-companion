@@ -1,5 +1,5 @@
 {
-  "name": "mtg-tracker",
+  "name": "mtg-companion",
   "version": "1.0.0",
   "description": "A life tracker for Magic: The Gathering games",
   "main": "index.js",
