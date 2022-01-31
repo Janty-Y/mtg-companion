@@ -145,7 +145,7 @@ div.life {
   margin-bottom: 20px;
 }
 
-@media only screen and ((max-height: 750px) or (max-width: 450px)) {
+@media only screen and ((max-height: 800px) or (max-width: 450px)) {
   body {
     font-size: 0.95rem;
   }
