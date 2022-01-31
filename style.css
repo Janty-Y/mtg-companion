@@ -130,7 +130,7 @@ div.life {
   margin-bottom: 20px;
 }
 
-@media (max-width: 760px) {
+@media only screen and (max-height: 950px) {
   body {
     font-size: 0.95rem;
   }
@@ -161,11 +161,11 @@ div.life {
     width: 40px;
   }
   .life-count {
-    font-size: 2.5rem;
+    font-size: 3rem;
     height: 1rem;
   }
   .offset {
-    padding-right: 30px;
+    padding-right: 40px;
     background-color: #fff;
   }
   .heart {
@@ -188,5 +188,25 @@ div.life {
   .results {
     font-size: 1.5rem;
     height: auto;
+  }
+
+  @media only screen and (max-height: 670px) {
+    h1 {
+      font-size: 1rem;
+    }
+    .top-button-row button {
+      width: 20%;
+      height: 65%;
+      font-size: 0.7rem;
+      padding: 0;
+    }
+    .game-time {
+      font-size: 1.2rem;
+    }
+    .bottom button {
+      width: 25%;
+      font-size: 0.7rem;
+      margin: 0;
+    }
   }
 }
