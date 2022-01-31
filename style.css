@@ -29,7 +29,7 @@ div.life-calc {
 }
 
 .btn:active {
-  transform: scale(0.85);
+  transform: scale(0.95);
   /* to show a "pressed" effect */
 }
 
@@ -125,6 +125,15 @@ div.life {
   font-size: 3rem;
 }
 
+.bottom {
+  padding-bottom: 20px;
+}
+
+.bottom button {
+  width: 20%;
+  height: 30%;
+}
+
 .results {
   font-size: 2rem;
   height: 3.5rem;
@@ -135,7 +144,7 @@ div.life {
   margin-bottom: 20px;
 }
 
-@media only screen and (max-height: 930px) {
+@media only screen and ((max-height: 800px) or (max-width: 450px)) {
   body {
     font-size: 0.95rem;
   }
@@ -182,8 +191,9 @@ div.life {
     font-size: 0.7rem;
     padding: 0;
   }
-  .bottom button {
-    width: 30%;
+  .bottom button.btn {
+    width: 100px;
+    height: 40px;
   }
   .cannot-checks {
     font-size: 0.9rem;
@@ -194,7 +204,7 @@ div.life {
     height: auto;
   }
 
-  @media only screen and (max-height: 380px) {
+  @media only screen and (max-height: 670px) {
     h1 {
       font-size: 1rem;
     }
