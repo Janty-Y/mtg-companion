@@ -176,7 +176,9 @@ div.life {
   }
   .top-button-row button {
     width: 20%;
-    height: 55%;
+    height: 40%;
+    font-size: 0.7rem;
+    padding: 0;
   }
   .bottom button {
     width: 30%;
@@ -202,11 +204,18 @@ div.life {
     }
     .game-time {
       font-size: 1.2rem;
+      margin: 0;
     }
     .bottom button {
       width: 25%;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       margin: 0;
+    }
+    .bottom button.btn {
+      height: 28px;
+    }
+    div.results {
+      font-size: 1rem;
     }
   }
 }
