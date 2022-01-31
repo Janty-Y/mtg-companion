@@ -132,6 +132,7 @@ div.life {
 .bottom button {
   width: 20%;
   height: 30%;
+  font-size: 1.3rem;
 }
 
 .results {
@@ -186,14 +187,16 @@ div.life {
     margin-bottom: 10px;
   }
   .top-button-row button {
-    width: 20%;
-    height: 40%;
-    font-size: 0.7rem;
+    width: 80px;
+    height: 40px;
+    font-size: 0.85rem;
     padding: 0;
   }
   .bottom button.btn {
     width: 100px;
     height: 40px;
+      font-size: 1rem;
+    }
   }
   .cannot-checks {
     font-size: 0.9rem;
