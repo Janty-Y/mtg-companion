@@ -126,13 +126,13 @@ div.life {
 }
 
 .bottom {
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .bottom button {
-  width: 20%;
-  height: 30%;
-  font-size: 1.3rem;
+  width: 150px;
+  height: 40px;
+  font-size: 1.1rem;
 }
 
 .results {
@@ -195,9 +195,9 @@ div.life {
   .bottom button.btn {
     width: 100px;
     height: 40px;
-      font-size: 1rem;
-    }
+    font-size: 1rem;
   }
+
   .cannot-checks {
     font-size: 0.9rem;
     margin: 2px 0;
@@ -221,15 +221,17 @@ div.life {
       font-size: 1.2rem;
       margin: 0;
     }
-    .bottom button {
+
+    .bottom button.btn {
+      height: 28px;
       width: 25%;
       font-size: 0.8rem;
       margin: 0;
     }
-    .bottom button.btn {
-      height: 28px;
-    }
     div.results {
+      font-size: 1rem;
+    }
+    .about-font {
       font-size: 1rem;
     }
   }
