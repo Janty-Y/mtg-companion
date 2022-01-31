@@ -67,6 +67,11 @@ div.life-calc {
   background-color: #fff;
   height: 260px;
   border: none;
+  text-align: center;
+}
+
+.life-history {
+  text-align: left;
 }
 
 div.life {
@@ -130,7 +135,7 @@ div.life {
   margin-bottom: 20px;
 }
 
-@media only screen and (max-height: 950px) {
+@media only screen and (max-height: 930px) {
   body {
     font-size: 0.95rem;
   }
@@ -149,19 +154,15 @@ div.life {
     width: 40px;
   }
 
-  .life-history {
-    text-align: left;
-  }
-
   .life-history-scroll {
     background-color: #fff;
     max-height: 130px;
     font-size: 0.8rem;
     text-align: left;
-    width: 40px;
+    width: 60px;
   }
   .life-count {
-    font-size: 3rem;
+    font-size: 2.2rem;
     height: 1rem;
   }
   .offset {
@@ -173,6 +174,7 @@ div.life {
   }
   .game-time {
     font-size: 1.8rem;
+    margin-bottom: 10px;
   }
   .top-button-row button {
     width: 20%;
@@ -192,7 +194,7 @@ div.life {
     height: auto;
   }
 
-  @media only screen and (max-height: 670px) {
+  @media only screen and (max-height: 380px) {
     h1 {
       font-size: 1rem;
     }
